@@ -73,14 +73,13 @@ router.post('/:id/recover', async (req, res) => {
 
     let id = req.params.id,
         targetTime = Number(req.body.targetTime)
-
     let connection = await repository.findConnection(id)
 
     if (targetTime > connection.lastBaseBackup?.at) {
 
-        if (targetTime <= connection.lastRecoveryTargetTime) {
-            return res.send({error: 'last recovery time is greater or equal to targetTime'})
-        }
+        // if (targetTime <= connection.lastRecoveryTargetTime) {
+        //     return res.send({error: 'last recovery time is greater or equal to targetTime'})
+        // }
 
         const status = await connectionService.connectionStatus(connection)
 
